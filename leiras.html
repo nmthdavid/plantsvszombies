@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pvz</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="plants-vs.-zombies"><code>Plants vs. Zombies</code></h1>
+<h2 id="nagybeadandó">Nagybeadandó</h2>
+<p>A feladatok egymásra épülnek, ezért érdemes a leírás sorrendjében
+megoldani őket! A függvények definíciójában lehet, sőt javasolt is
+alkalmazni a korábban definiált függvényeket.</p>
+<p><em>Tekintve, hogy a tesztesetek, bár odafigyelés mellett íródnak,
+nem fedik le minden esetben a függvény teljes működését, határozottan
+javasolt még külön próbálgatni a megoldásokat beadás előtt!</em></p>
+<h2 id="a-feladat-összefoglaló-leírása">A feladat összefoglaló
+leírása</h2>
+<p>A feladat során egy leegyszerűsített verzióját fogjuk a <em>Plants vs
+Zombies</em> játéknak implementálni. A játékban egy 5 soros pályán
+zombik masíroznak jobbról balra, míg a játékos növények lerakávásval
+próbálja megvédeni magát. A zombik nyernek, ha egy zombi elér a pálya
+bal oldalára. A játékos nyer, ha az összes zombi meghal. A játék során
+Napokat kell gyűjteni, amellyvel új növényeket lehet venni. Az eredeti
+videójátékkal kapcsolatban egyéb információ a <a
+href="https://hu.wikipedia.org/wiki/Plants_vs._Zombies">Wikipédián</a>
+olvasható.</p>
+<p>Mivel az implementációban nem lehet grafikai felületünk, ezért csak
+egy szimulációt fogunk elvégezni, vagyis önmagától fognak zajlani a
+körök. A játék menetét diszkrét időintervallumokra bontjuk (úgy nevezett
+körökre), amelyek eltelése után minden játékban szereplő zombi és növény
+elvégezhet egy automatikus műveletet. <em>Például:</em> A zombi megy
+előre, míg a növény lő.</p>
+<h2 id="típusok-definíciója">Típusok definíciója</h2>
+<p>A játékmodell fogja tartalmazni a növényeket, zombikat és a játékos
+Napjainak számát. Először definiáljuk a részadatszerkezeteket, majd egy
+nagy közös tároló modellt. A koordináták és a Napok reprezentáláshoz az
+alábbi típusszinonímákat fogjuk használni:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Coordinate</span> <span class="ot">=</span> (<span class="dt">Int</span>, <span class="dt">Int</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Sun</span> <span class="ot">=</span> <span class="dt">Int</span></span></code></pre></div>
+<h3 id="növények">Növények</h3>
+<p>Növényekből szükségünk lesz az alap növényekre:
+<code>Peashooter</code>, <code>Sunflower</code>, <code>Walnut</code> és
+<code>CherryBomb</code>. Definiáljunk egy <code>Plant</code> adattípust
+az előbb említett konstruktorokkal. Minden konstruktornak legyen egy
+<code>Int</code> típusú paramétere, amely a maradék életpontjukat
+reprezentálja a példányoknak. A növények funkcionalitását később
+implementáljuk.</p>
+<h3 id="zombik">Zombik</h3>
+<p>Definiáljuk a <code>Zombie</code> adattípust az alábbi
+konstruktorokkal: <code>Basic</code>, <code>Conehead</code>,
+<code>Buckethead</code> és <code>Vaulting</code>. Minden konstruktornak
+legyen két <code>Int</code> típusú paramétere, amelyből az első a
+maradék életponját, míg a második a mozgási sebességét
+reprezentálja.</p>
+<h3 id="modell">Modell</h3>
+<p>Definiáljuk a <code>GameModel</code> adattípust, amelynek egy
+<code>GameModel</code> nevű konstruktora van. A konstruktor tárolja,
+hogy mennyi Napja van a játékosnak egy <code>Sun</code> típusú
+paraméterben, illetve a növények és a zombik helyét és pozícióit egy
+<code>[(Coordinate, Plant)]</code> és
+<code>[(Coordinate, Zombie)]</code> típusú paraméterekben.</p>
+<p>A feladatban lévő típusokra kérjük meg a fordítót, hogy
+implementáljon <code>Eq</code> és <code>Show</code>
+típusosztályokat.</p>
+<h3 id="példák">Példák</h3>
+<p>Az alábbi példákat vagy másoljuk be a megoldásunkba, vagy töltsük le
+a feladathoz csatolt alapfájlt!</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">defaultPeashooter ::</span> <span class="dt">Plant</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>defaultPeashooter <span class="ot">=</span> <span class="dt">Peashooter</span> <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ot">defaultSunflower ::</span> <span class="dt">Plant</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>defaultSunflower <span class="ot">=</span> <span class="dt">Sunflower</span> <span class="dv">2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ot">defaultWalnut ::</span> <span class="dt">Plant</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>defaultWalnut <span class="ot">=</span> <span class="dt">Walnut</span> <span class="dv">15</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ot">defaultCherryBomb ::</span> <span class="dt">Plant</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>defaultCherryBomb <span class="ot">=</span> <span class="dt">CherryBomb</span> <span class="dv">2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ot">basic ::</span> <span class="dt">Zombie</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>basic <span class="ot">=</span> <span class="dt">Basic</span> <span class="dv">5</span> <span class="dv">1</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ot">coneHead ::</span> <span class="dt">Zombie</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>coneHead <span class="ot">=</span> <span class="dt">Conehead</span> <span class="dv">10</span> <span class="dv">1</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ot">bucketHead ::</span> <span class="dt">Zombie</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>bucketHead <span class="ot">=</span> <span class="dt">Buckethead</span> <span class="dv">20</span> <span class="dv">1</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ot">vaulting ::</span> <span class="dt">Zombie</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>vaulting <span class="ot">=</span> <span class="dt">Vaulting</span> <span class="dv">7</span> <span class="dv">2</span></span></code></pre></div>
+<h2 id="alapfeladat">Alapfeladat</h2>
+<h3 id="növények-vásárlása">Növények vásárlása</h3>
+<p>A játékban minden növénynek van egy előre megadott ára:</p>
+<ul>
+<li><code>Peashooter</code>-nek <code>100 Nap</code>,</li>
+<li><code>Sunflower</code>-nek és <code>Walnut</code>-nak
+<code>50 Nap</code></li>
+<li><code>CherryBomb</code>-nak <code>150 Nap</code>.</li>
+</ul>
+<p>Definiáljuk a <code>tryPurchase</code> függvényt, amely azt
+szimlulálja, hogy a játékos egy adott koordinátára egy növényt próbál
+megvenni. Ha azon a helyen van már növény, vagy az
+<code>5 * 12</code>-es játéktéren kívülre akarna vásárolni, esetleg
+nincs elég Napja a játékosnak, akkor adjunk vissza
+<code>Nothing</code>-ot!</p>
+<p><strong>Segítség</strong>: A <code>Data.List.lookup</code> függvény
+hasznos lehet a feladat során.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">tryPurchase ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">Coordinate</span> <span class="ot">-&gt;</span> <span class="dt">Plant</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">GameModel</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tryPurchase (<span class="dt">GameModel</span> <span class="dv">50</span> [] []) (<span class="dv">0</span>,<span class="dv">0</span>) defaultPeashooter <span class="op">==</span> <span class="dt">Nothing</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tryPurchase (<span class="dt">GameModel</span> <span class="dv">50</span> [] []) (<span class="dv">0</span>,<span class="dv">0</span>) defaultWalnut <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultWalnut)] [])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>tryPurchase (<span class="dt">GameModel</span> <span class="dv">150</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultWalnut)] []) (<span class="dv">0</span>,<span class="dv">0</span>) defaultCherryBomb <span class="op">==</span> <span class="dt">Nothing</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tryPurchase (<span class="dt">GameModel</span> <span class="dv">50</span> [] []) (<span class="dv">5</span>,<span class="dv">0</span>) defaultWalnut <span class="op">==</span> <span class="dt">Nothing</span></span></code></pre></div>
+<h3 id="zombik-lerakása">Zombik lerakása</h3>
+<p>A zombik az eredeti játékban mindig valamelyik sor végén jelennek meg
+- néhány irreleváns kivétellel. Ezt a sémát próbáljuk meg a
+szimulációban is követni. Definiáljuk a <code>placeZombieInLane</code>
+nevű függvényt, amely egy zombit lehelyez valamelyik sáv végére. Ha az
+adott sáv végén már van zombi vagy a sáv száma nem megfelelő, akkor
+adjunk vissza <code>Nothing</code>ot. A játéktérben 5 sáv van és azok 12
+hosszúak. Az indexelést 0-tól kezdjük.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">placeZombieInLane ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">Zombie</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">GameModel</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>placeZombieInLane (<span class="dt">GameModel</span> <span class="dv">0</span> [] []) coneHead <span class="dv">0</span> <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">11</span>), coneHead)])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>placeZombieInLane (<span class="dt">GameModel</span> <span class="dv">0</span> [] []) vaulting <span class="dv">5</span> <span class="op">==</span> <span class="dt">Nothing</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>placeZombieInLane (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">11</span>), coneHead)]) bucketHead <span class="dv">0</span> <span class="op">==</span> <span class="dt">Nothing</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>placeZombieInLane (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">3</span>), coneHead)]) basic <span class="dv">0</span> <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">11</span>), basic),((<span class="dv">0</span>,<span class="dv">3</span>), coneHead)])</span></code></pre></div>
+<h3 id="zombik-mozgása-és-támadása">Zombik mozgása és támadása</h3>
+<p>A zombik minden kör alatt a sebességüknek megfelelő mezőt mennek
+előre, amennyiben tudnak. Ha egy zombi nem tud előre menni, mert a
+mezőn, amin áll, van egy növény, akkor a zombi beleharap a növénybe és
+csökkenti az életponját <code>1</code>-gyel és továbbra is azon a mezőn
+marad. Ez alól csak a <code>Vaulting</code> zombi a kivétel: ha még a
+sebessége <code>2</code>, akkor az első növényt átugorja és halad
+tovább, viszont a sebessége <code>1</code>-re csökken.</p>
+<p>Definiáljuk a <code>performZombieActions</code> függvényt amely a
+modell összes zombijára elvégzi a fent említett megfelelő műveletet. Ha
+egy zombi eljutna a jatéktér végére, adjunk vissza
+<code>Nothing</code>-ot! A függvénynek nem kell kitörölnie a halott
+növényeket!</p>
+<p><strong>Segtíség:</strong> Segíthet egy olyan segédfüggvény
+implementálása, amely egy adott koordinátájú növény életponját csökkenti
+1-gyel.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">performZombieActions ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">GameModel</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>performZombieActions (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">0</span>), coneHead)]) <span class="op">==</span> <span class="dt">Nothing</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>performZombieActions (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">1</span>), coneHead)]) <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [] [((<span class="dv">0</span>,<span class="dv">0</span>), coneHead)])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>performZombieActions (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">1</span>), defaultWalnut)] [((<span class="dv">0</span>,<span class="dv">1</span>), coneHead)]) <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">Walnut</span> <span class="dv">14</span>)] [((<span class="dv">0</span>,<span class="dv">1</span>), coneHead)])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>performZombieActions (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">1</span>), defaultWalnut)] [((<span class="dv">0</span>,<span class="dv">1</span>), vaulting)]) <span class="op">==</span> <span class="dt">Just</span> (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">1</span>), defaultWalnut)] [((<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">Vaulting</span> <span class="dv">7</span> <span class="dv">1</span>)])</span></code></pre></div>
+<h2 id="pályatisztítás">Pályatisztítás</h2>
+<p>Amikor egy növény lelő egy zombit vagy egy zombi megeszik egy
+növényt, és az életpontja <code>0</code>-ra vagy az alá esik, akkor
+ezeket a halott lényeket el kell tüntetni a pályáról. Definiáljuk a
+<code>cleanBoard</code> függvényt, amely letöröl mindent a pályáról,
+aminek legfeljebb <code>0</code> életpontja van.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ot">cleanBoard ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">GameModel</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cleanBoard (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">0</span>)] []) <span class="op">==</span> <span class="dt">GameModel</span> <span class="dv">0</span> [] []</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cleanBoard (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultPeashooter)] [((<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">Basic</span> <span class="dv">0</span> <span class="dv">1</span>)]) <span class="op">==</span> <span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultPeashooter)] []</span></code></pre></div>
+<h2 id="extra-feladatok">Extra feladatok</h2>
+<p>A következő feladatok megoldása nem kötelező, viszont az itt szerzett
+pontok hozzáadódnak a vizsga/megajánlott jegy pontszámához (az átmenő
+pontszám megszerzését követően). Ebben a részben összesen 1+2, azaz 3
+pont szerezhető.</p>
+<h2 id="növények-műveletei-1-pont">Növények műveletei (1 pont)</h2>
+<p>A növények minden körben valami műveletet végeznek el:</p>
+<ul>
+<li>a <code>Peashooter</code> meglövi a sorban lévő első előtte lévő
+zombit,</li>
+<li>a <code>Sunflower</code> produkál 25 Napot,</li>
+<li>a <code>CherryBomb</code> felrobban, megölvén saját magát és az
+összes zombit egy <code>3 * 3</code>-as területen, ahol a növény a
+középpontja <em>(itt a megölés az életpontok 0-ra való állítását
+jelenti)</em>.</li>
+</ul>
+<p>Definiáljuk a <code>performPlantActions</code> függvényt, amely a
+növények fent említett műveleteit elvégzi minden növényre. Mivel a
+sebességük nem egyezik a zombiknak, ezért lehet, hogy ugyanazon a mezőn
+fognak állni. Ebben az esetben az összes releváns zombit támadjuk meg! A
+függvény ne törölje ki a halott zombikat!</p>
+<p><strong>Segítség:</strong> Segíthet egy olyan segédfüggvény
+implementálása, amely egy adott koordinátájú zombi életponját
+megváltoztatja.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">performPlantActions ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">GameModel</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>performPlantActions (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">replicate</span> <span class="dv">5</span> ((<span class="dv">0</span>,<span class="dv">0</span>), defaultSunflower)) []) <span class="op">==</span> <span class="dt">GameModel</span> <span class="dv">125</span> (<span class="fu">replicate</span> <span class="dv">5</span> ((<span class="dv">0</span>,<span class="dv">0</span>), defaultSunflower)) []</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>performPlantActions (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultPeashooter)] [((<span class="dv">0</span>,<span class="dv">3</span>), coneHead)]) <span class="op">==</span> <span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">0</span>,<span class="dv">0</span>), defaultPeashooter)] [((<span class="dv">0</span>,<span class="dv">3</span>), <span class="dt">Conehead</span> <span class="dv">9</span> <span class="dv">1</span>)]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>performPlantActions (<span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">3</span>,<span class="dv">3</span>), defaultCherryBomb )] [((<span class="dv">2</span>,<span class="dv">2</span>), bucketHead)]) <span class="op">==</span> <span class="dt">GameModel</span> <span class="dv">0</span> [((<span class="dv">3</span>,<span class="dv">3</span>),<span class="dt">CherryBomb</span> <span class="dv">0</span>)] [((<span class="dv">2</span>,<span class="dv">2</span>),<span class="dt">Buckethead</span> <span class="dv">0</span> <span class="dv">1</span>)]</span></code></pre></div>
+<h2 id="szimuláció-2-pont">Szimuláció (2 pont)</h2>
+<h3 id="játék-menete">Játék Menete</h3>
+<p>Egy játék menete az alábbi módon néz ki:</p>
+<ol type="1">
+<li><strong>Csak a következő feladatban!</strong> Felhasználói
+beavatkozás</li>
+<li>Növények támadnak</li>
+<li>Pálya tisztítás</li>
+<li>Zombik támadnak, ha bejutottak, nyertek</li>
+<li>Új zombik lerakása</li>
+<li>Pálya tisztítás</li>
+<li>+25 Nap</li>
+</ol>
+<p>Ezt a 7 műveletet ismétli a játék, amíg valaki nem nyer. A zombik az
+eredeti játékban hullámonként jönnek, tehát a játék valamennyi zombit
+lerak a fenti kör után. Definiáljuk a <code>defendsAgainst</code>
+függvényt amely egy statikus növényvédelem ellen leszimulál egy zombi
+hordát! A második paraméter a körönként beszúrandó zombikat tartalmazza!
+Ha a növények nyernek, akkor <code>True</code>-t adjunk vissza egyébként
+<code>False</code>-ot! Ha egy zombit nem tudunk beszúrni, a program
+dobjon kivételt!</p>
+<p><strong>Segtíség</strong>: Az előző feladatokban implementált
+<code>performZombieAction</code>, <code>performPlantAction</code> és
+<code>cleanBoard</code> függvények használata jóval leegyszerűsítheti a
+programot!</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">defendsAgainst ::</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> [[(<span class="dt">Int</span>, <span class="dt">Zombie</span>)]] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>defendsAgainst (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, basic)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">not</span> <span class="op">$</span> defendsAgainst (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, bucketHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>defendsAgainst (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) <span class="op">$</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, coneHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>])  <span class="op">:</span> (<span class="fu">replicate</span> <span class="dv">10</span> [] <span class="op">++</span> [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, coneHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]])</span></code></pre></div>
+<h3 id="interaktív-szimuláció">Interaktív szimuláció</h3>
+<p>A játéknak nagyon fontos része az emberi interakció. A játékciklus
+fentebb specifikálja, hogy mikor és hogyan szólhat bele a játékos (ebből
+csak a mikort fogjuk implementálni). Definiáljuk a
+<code>defendsAgainstI</code> függvényt, amely engedi a játékosnak a
+modell megváltoztatását a körök elején! Ez annyit jelent, hogy az
+interakciót a játékostól, mint függvényparaméter vesszük át és ezt a
+függvényt alkalmazzuk a “Felhasználói beavatkozás” fázisban. (Ez nem
+biztosítja, hogy a játékos mondjuk nem törli ki simán az összes zombit,
+de reméljük senki sem csal.)</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">defendsAgainstI ::</span> (<span class="dt">GameModel</span> <span class="ot">-&gt;</span> <span class="dt">GameModel</span>) <span class="ot">-&gt;</span> <span class="dt">GameModel</span> <span class="ot">-&gt;</span> [[(<span class="dt">Int</span>, <span class="dt">Zombie</span>)]] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span></code></pre></div>
+<p><em>Az alábbi tesztesetek közül mindegyiknek <code>True</code>-t kell
+adnia:</em></p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode hs"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>defendsAgainstI <span class="fu">id</span> (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, basic)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">not</span> <span class="op">$</span> defendsAgainstI <span class="fu">id</span> (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, bucketHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>defendsAgainstI <span class="fu">id</span> (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">2</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) <span class="op">$</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, coneHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) <span class="op">:</span> (<span class="fu">replicate</span> <span class="dv">10</span> [] <span class="op">++</span> [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, coneHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>defendsAgainstI (\(<span class="dt">GameModel</span> s p _) <span class="ot">-&gt;</span> <span class="dt">GameModel</span> s p []) (<span class="dt">GameModel</span> <span class="dv">0</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> ((x,<span class="dv">0</span>), <span class="dt">Peashooter</span> <span class="dv">3</span>)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]) []) [<span class="fu">map</span> (\x <span class="ot">-&gt;</span> (x, bucketHead)) [<span class="dv">0</span><span class="op">..</span><span class="dv">4</span>]]</span></code></pre></div>
+</body>
+</html>
